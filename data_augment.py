@@ -2,6 +2,7 @@ from __future__ import print_function
 
 import os
 import numpy as np
+import cv2
 
 from skimage.io import imsave, imread
 from shutil import copy
@@ -34,8 +35,8 @@ def create_train_data():
         if 'mask' in image_name:
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tif'
-        img = imread(os.path.join(train_data_path, image_name), as_grey=True)
-        img_mask = imread(os.path.join(train_data_path, image_mask_name), as_grey=True)
+        img = cv2.imread(os.path.join(train_data_path, image_name), 0)
+        img_mask = cv2.imread(os.path.join(train_data_path, image_mask_name), 0)
 
         img = np.array([img])
         img_mask = np.array([img_mask])
@@ -109,7 +110,7 @@ def create_test_data():
     print('-'*30)
     for image_name in images:
         img_id = int(image_name.split('.')[0])
-        img = imread(os.path.join(train_data_path, image_name), as_grey=True)
+        img = cv2.imread(os.path.join(train_data_path, image_name), 0)
 
         img = np.array([img])
 
