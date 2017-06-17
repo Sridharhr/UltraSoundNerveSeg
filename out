@@ -1,0 +1,9 @@
+  762  wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-ppc64le.sh
+  766  bash ./Anaconda3-4.4.0-Linux-ppc64le.sh -b -p $HOME/anaconda
+  771  export PATH="$HOME/miniconda/bin:$PATH"
+  776  conda update conda
+	conda env create -f conda_keras_tf.yml 
+  788  git clone https://github.com/Dheeraj-B/ProjectSeg.git
+  797  pip install --upgrade --no-deps git+git://github.com/fchollet/keras.git
+  798  conda install -c conda-forge tensorflow
+  801  python ./data.py
