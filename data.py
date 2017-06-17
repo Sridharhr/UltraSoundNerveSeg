@@ -20,7 +20,6 @@ def get_object_existence(mask_array):
 
 def create_train_data():
     train_data_path = os.path.join(data_path, 'train')
-    print('Train dat path is:',train_data_path)
     images = os.listdir(train_data_path)
     total = len(images) // 2
 
@@ -37,9 +36,7 @@ def create_train_data():
         if 'mask' in image_name:
             continue
         image_mask_name = image_name.split('.')[0] + '_mask.tif'
-        print(image_name)
         full_name = os.path.join(train_data_path, image_name)
-        print(full_name)
         img = cv2.imread(full_name, 0)
         img_mask = cv2.imread(os.path.join(train_data_path, image_mask_name), 0)
 
