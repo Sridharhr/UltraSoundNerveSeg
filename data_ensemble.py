@@ -46,7 +46,7 @@ def create_train_data():
         # may be try a ksize=3 also
         img = cv2.Sobel(img,cv2.CV_64F,0,1,ksize=-1)
         img = cv2.dilate(img,kernel,iterations = 1)
-        cv2.imwriteidata_path+'//transform//'+
+        cv2.imwrite(data_path+'//transform//'+
                     image_name.split('.')[0] + '.jpg',img)
         #img = cv2.Sobel(img,cv2.CV_64F,0,1,ksize=3)
 
@@ -104,7 +104,7 @@ def create_test_data():
     print('-'*30)
     for image_name in images:
         img_id = int(image_name.split('.')[0])
-        img = imread(os.path.join(train_data_path, image_name), as_grey=True)
+        img = cv2.imread(os.path.join(train_data_path, image_name), 0)
 
         img = np.array([img])
         
