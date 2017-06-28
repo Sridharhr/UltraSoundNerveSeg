@@ -2,7 +2,7 @@
 """
 Created on Mon Jun 26 17:48:27 2017
 
-@author: IBM
+@author: Sridhar/Dheeraj
 """
 from __future__ import print_function
 from keras.models import Sequential
@@ -15,7 +15,7 @@ import numpy as np
 
 
 from data_ensemble import load_train_data, load_test_data
-from inception_net import get_unet
+from train_inception import get_unet
 
 img_rows = 200
 img_cols = 200
@@ -61,7 +61,8 @@ model = KerasClassifier(build_fn=get_unet, epochs=20, batch_size=32, verbose=1)
 epochs=[5,10,20,40,80]
 batches = [8, 16, 32, 64, 128]
 lr = [1e-3,1e-4,1e-5,1e-6,1e-7]
-param_grid = dict(epochs=epochs, batch_size=batches, lr_in=lr)
+#param_grid = dict(epochs=epochs, batch_size=batches, lr_in=lr)
+param_grid = dict(epochs=epochs, batch_size=batches)
 #TODO: try out setting iid = False below
 grid = GridSearchCV(estimator=model, param_grid=param_grid,cv=6)
 
