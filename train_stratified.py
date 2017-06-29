@@ -58,7 +58,7 @@ print('-'*30)
 
 # create model
 model = KerasClassifier(build_fn=get_unet, epochs=20, batch_size=32, verbose=1)
-epochs=[5,10,20,40,80]
+epochs=[5,10,15,20,30]
 batches = [8, 16, 32, 64, 128]
 lr = [1e-3,1e-4,1e-5,1e-6,1e-7]
 #param_grid = dict(epochs=epochs, batch_size=batches, lr_in=lr)
