@@ -2,7 +2,7 @@
 """
 Created on Mon Jun 26 17:48:27 2017
 
-@author: IBM
+@author:  Sridhar
 """
 from __future__ import print_function
 from keras.models import Sequential
@@ -69,6 +69,7 @@ model.fit(imgs_train, imgs_mask_train, batch_size=32, nb_epoch=20, verbose=1, sh
           validation_split=0.2,
           callbacks=[model_checkpoint])
 
+exit
 
 # create model
 '''model = KerasClassifier(build_fn=get_unet, epochs=20, batch_size=32, verbose=1)
