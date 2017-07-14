@@ -150,40 +150,36 @@ def get_unet():
     conv5 = assymetrical_inception(pool4,512,7,batch_mode=2, splitted=True, activation=act)
 
 # no pooling after conv5
-    from_c4 = residual_block(conv4,256)
-    up_from_c5 = Conv2DTranspose(filters=512,kernel_size=kernel_size,strides=(2, 2),
-                                 kernel_initializer='he_normal',padding='same')(conv5)
-    inp_c6 = concatenate([from_c4,up_from_c5],axis=-1)
+    #from_c4 = residual_block(conv4,256)
+    #up_from_c5 = Conv2DTranspose(filters=512,kernel_size=kernel_size,strides=(2, 2),kernel_initializer='he_normal',padding='same')(conv5)
+    #inp_c6 = concatenate([from_c4,up_from_c5],axis=-1)
     #conv6 = inception_block(inp_c6,256,2,batch_mode=2, splitted=True, activation=act)
    
-    #up6 = concatenate([Conv2DTranspose(256, (2, 2), strides=(2, 2), padding='same')(conv5), conv4], axis=3)
+    up6 = concatenate([Conv2DTranspose(256, (4, 4), strides=(2, 2), padding='same')(conv5), conv4], axis=3)
     conv6 = Conv2D(256, (3, 3), activation='relu', padding='same')(inp_c6)
     conv6 = Conv2D(256, (3, 3), activation='relu', padding='same')(conv6)
     
-    from_c3 = residual_block(conv3,128)
-    up_from_c6 = Conv2DTranspose(filters=256,kernel_size=kernel_size,strides=(2, 2),
-                                 kernel_initializer='he_normal',padding='same')(conv6)
-    inp_c7 = concatenate([from_c3,up_from_c6],axis=-1)
+    #from_c3 = residual_block(conv3,128)
+    #up_from_c6 = Conv2DTranspose(filters=256,kernel_size=kernel_size,strides=(2, 2),kernel_initializer='he_normal',padding='same')(conv6)
+    #inp_c7 = concatenate([from_c3,up_from_c6],axis=-1)
     #conv7 = inception_block(inp_c7,128,2,batch_mode=2, splitted=True, activation=act)
-    #up7 = concatenate([Conv2DTranspose(128, (2, 2), strides=(2, 2), padding='same')(conv6), conv3], axis=3)
+    up7 = concatenate([Conv2DTranspose(128, (4, 4), strides=(2, 2), padding='same')(conv6), conv3], axis=3)
     conv7 = Conv2D(128, (3, 3), activation='relu', padding='same')(inp_c7)
     conv7 = Conv2D(128, (3, 3), activation='relu', padding='same')(conv7)
 
-    from_c2 = residual_block(conv2,64)
-    up_from_c7 = Conv2DTranspose(filters=128,kernel_size=kernel_size,strides=(2, 2),
-                                kernel_initializer='he_normal', padding='same')(conv7)
-    inp_c8 = concatenate([from_c2,up_from_c7],axis=-1)
+    #from_c2 = residual_block(conv2,64)
+    #up_from_c7 = Conv2DTranspose(filters=128,kernel_size=kernel_size,strides=(2, 2),kernel_initializer='he_normal', padding='same')(conv7)
+    #inp_c8 = concatenate([from_c2,up_from_c7],axis=-1)
     #conv8 = inception_block(inp_c8,64,1,batch_mode=2, splitted=False, activation=act)
-    #up8 = concatenate([Conv2DTranspose(64, (2, 2), strides=(2, 2), padding='same')(conv7), conv2], axis=3)
+    up8 = concatenate([Conv2DTranspose(64, (4, 4), strides=(2, 2), padding='same')(conv7), conv2], axis=3)
     conv8 = Conv2D(64, (3, 3), activation='relu', padding='same')(inp_c8)
     conv8 = Conv2D(64, (3, 3), activation='relu', padding='same')(conv8)
 
-    from_c1 = residual_block(conv1,32)
-    up_from_c8 = Conv2DTranspose(filters=64,kernel_size=kernel_size,strides=(2, 2),
-                                 kernel_initializer='he_normal',padding='same')(conv8)
-    inp_c9 = concatenate([from_c1,up_from_c8],axis=-1)
+    #from_c1 = residual_block(conv1,32)
+    #up_from_c8 = Conv2DTranspose(filters=64,kernel_size=kernel_size,strides=(2, 2),kernel_initializer='he_normal',padding='same')(conv8)
+    #inp_c9 = concatenate([from_c1,up_from_c8],axis=-1)
     #conv9 = inception_block(inp_c9,32,1,batch_mode=2, splitted=False, activation=act)
-    #up9 = concatenate([Conv2DTranspose(32, (2, 2), strides=(2, 2), padding='same')(conv8), conv1], axis=3)
+    up9 = concatenate([Conv2DTranspose(32, (4, 4), strides=(2, 2), padding='same')(conv8), conv1], axis=3)
     conv9 = Conv2D(32, (3, 3), activation='relu', padding='same')(inp_c9)
     conv9 = Conv2D(32, (3, 3), activation='relu', padding='same')(conv9)
 
