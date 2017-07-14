@@ -53,7 +53,7 @@ def create_train_data():
     print('Loading done.')
 
     # filter maks and maskless images
-    existence_mask = get_object_existence(imgs_mask)
+    '''existence_mask = get_object_existence(imgs_mask)
     image_name = np.array(image_name_map)
     masked_images = image_name[existence_mask]
     non_masked_images = image_name[np.invert(existence_mask)]
@@ -85,7 +85,7 @@ def create_train_data():
 
     for image in non_masked_images_cv:
         print('non_mask cv ',image)
-        copy('raw/train/'+image,'data/validation/non_masked/')
+        copy('raw/train/'+image,'data/validation/non_masked/')'''
         
     np.save('imgs_train.npy', imgs)
     np.save('imgs_mask_train.npy', imgs_mask)
